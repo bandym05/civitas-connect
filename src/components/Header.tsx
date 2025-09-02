@@ -82,7 +82,7 @@ export default function Header() {
         {isMenuOpen && (
           <div
             className={cn(
-              'fixed inset-x-0 top-14 z-50 grid gap-6 bg-background/95 p-6 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden animate-in slide-in-from-top-4'
+              'fixed inset-x-0 top-14 z-50 grid gap-6 bg-background p-6 md:hidden animate-in slide-in-from-top-4'
             )}
           >
             <nav className="grid gap-4">

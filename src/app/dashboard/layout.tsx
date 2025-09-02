@@ -12,14 +12,12 @@ import {
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
-  SidebarInset,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Wind, LayoutDashboard, Newspaper, Wrench, Construction, Megaphone, LogOut, Settings, CreditCard } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
