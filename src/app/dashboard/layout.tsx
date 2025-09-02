@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Wind, LayoutDashboard, Newspaper, Wrench, Construction, Megaphone, LogOut, Settings } from 'lucide-react';
+import { Wind, LayoutDashboard, Newspaper, Wrench, Construction, Megaphone, LogOut, Settings, CreditCard } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -24,6 +24,7 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/services', label: 'Services', icon: Wrench },
+  { href: '/dashboard/billing', label: 'Billing', icon: CreditCard },
   { href: '/dashboard/news', label: 'News', icon: Newspaper },
   { href: '/dashboard/projects', label: 'Projects', icon: Construction },
   { href: '/dashboard/feedback', label: 'Feedback', icon: Megaphone },

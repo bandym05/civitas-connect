@@ -187,3 +187,31 @@ export type ServiceRequest = {
   submittedAt: string;
   data: {[key: string]: string};
 };
+
+export type Payment = {
+  id: string;
+  date: string;
+  description: string;
+  amount: number;
+  status: 'Completed' | 'Pending' | 'Failed';
+};
+
+export const paymentHistory: Payment[] = [
+  { id: '1', date: '2024-07-15', description: 'Water & Electricity Bill', amount: 125.50, status: 'Completed' },
+  { id: '2', date: '2024-07-10', description: 'Property Tax', amount: 850.00, status: 'Completed' },
+  { id: '3', date: '2024-06-20', description: 'Parking Ticket #T123456', amount: 50.00, status: 'Completed' },
+  { id: '4', date: '2024-06-15', description: 'Water & Electricity Bill', amount: 115.75, status: 'Completed' },
+];
+
+export type Statement = {
+  id: string;
+  period: string;
+  dueDate: string;
+  downloadUrl: string;
+};
+
+export const accountStatements: Statement[] = [
+    { id: '1', period: 'Q2 2024 (Apr-Jun)', dueDate: '2024-07-20', downloadUrl: '#' },
+    { id: '2', period: 'Q1 2024 (Jan-Mar)', dueDate: '2024-04-20', downloadUrl: '#' },
+    { id: '3', period: 'Q4 2023 (Oct-Dec)', dueDate: '2024-01-20', downloadUrl: '#' },
+];

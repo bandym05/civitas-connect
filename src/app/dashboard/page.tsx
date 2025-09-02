@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Wrench, Newspaper, AlertTriangle, CheckCircle, Clock, Construction, Megaphone, FileText } from "lucide-react";
+import { Wrench, Newspaper, AlertTriangle, CheckCircle, Clock, Construction, Megaphone, FileText, CreditCard } from "lucide-react";
 import Link from "next/link";
 import useLocalStorage from "@/hooks/use-local-storage";
 import { news } from "@/lib/data";
@@ -31,6 +31,12 @@ export default function DashboardPage() {
           href: "/dashboard/services"
       },
       {
+          title: "View & Pay Bills",
+          icon: <CreditCard className="h-6 w-6 text-primary"/>,
+          description: "Access payment history and settle bills.",
+          href: "/dashboard/billing"
+      },
+      {
           title: "Read the News",
           icon: <Newspaper className="h-6 w-6 text-primary"/>,
           description: "Get the latest updates and announcements.",
@@ -47,12 +53,6 @@ export default function DashboardPage() {
           icon: <Megaphone className="h-6 w-6 text-primary"/>,
           description: "Share your suggestions or report concerns.",
           href: "/dashboard/feedback"
-      },
-      {
-          title: "Pay a Bill/Ticket",
-          icon: <FileText className="h-6 w-6 text-primary"/>,
-          description: "Settle utility bills or parking tickets online.",
-          href: "/dashboard/services"
       }
   ]
 
@@ -133,7 +133,7 @@ export default function DashboardPage() {
                     </CardHeader>
                     <CardContent className="flex flex-col gap-3">
                          <Button asChild variant="link" className="p-0 h-auto justify-start">
-                            <Link href="/dashboard/services">Pay a Bill</Link>
+                            <Link href="/dashboard/billing">Pay a Bill</Link>
                         </Button>
                          <Button asChild variant="link" className="p-0 h-auto justify-start">
                             <Link href="/dashboard/feedback">Submit Feedback</Link>
