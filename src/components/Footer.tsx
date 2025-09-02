@@ -14,25 +14,40 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto py-8 px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex items-center space-x-2">
-            <Wind className="h-6 w-6 text-primary" />
-            <span className="font-bold font-headline">Civitas Connect</span>
-          </div>
-          <div className="text-center text-sm text-muted-foreground">
+        <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center md:items-start">
+                <div className="flex items-center space-x-2 mb-4">
+                    <Wind className="h-6 w-6 text-primary" />
+                    <span className="font-bold font-headline text-lg">Civitas Connect</span>
+                </div>
+                <p className="text-sm text-muted-foreground text-center md:text-left">Your one-stop portal for municipal services, news, and community engagement.</p>
+            </div>
+             <div className="flex flex-col items-center">
+                <h3 className="font-semibold mb-4 font-headline">Quick Links</h3>
+                <nav className="flex flex-col gap-2 items-center">
+                    <Link href="/dashboard/services" className="text-muted-foreground hover:text-primary text-sm">Services</Link>
+                    <Link href="/dashboard/news" className="text-muted-foreground hover:text-primary text-sm">News</Link>
+                    <Link href="/dashboard/projects" className="text-muted-foreground hover:text-primary text-sm">Projects</Link>
+                    <Link href="/dashboard/feedback" className="text-muted-foreground hover:text-primary text-sm">Feedback</Link>
+                </nav>
+            </div>
+             <div className="flex flex-col items-center md:items-end">
+                 <h3 className="font-semibold mb-4 font-headline">Follow Us</h3>
+                <div className="flex space-x-4">
+                    <Link href="#" className="text-muted-foreground hover:text-primary">
+                    <Twitter />
+                    </Link>
+                    <Link href="#" className="text-muted-foreground hover:text-primary">
+                    <Facebook />
+                    </Link>
+                    <Link href="#" className="text-muted-foreground hover:text-primary">
+                    <Instagram />
+                    </Link>
+                </div>
+            </div>
+        </div>
+        <div className="text-center text-sm text-muted-foreground mt-8 pt-8 border-t">
             © {new Date().getFullYear()} Civitas Connect. All Rights Reserved.
-          </div>
-          <div className="flex space-x-4">
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Twitter />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Facebook />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Instagram />
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -20,8 +21,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Don't show header on dashboard pages
-  if (pathname.startsWith('/dashboard')) {
+  // Don't show header on dashboard pages or login page
+  if (pathname.startsWith('/dashboard') || pathname === '/login') {
     return null;
   }
 
@@ -36,12 +37,18 @@ export default function Header() {
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
-             <Link
-                href="/"
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-              >
-                Home
-              </Link>
+             {navItems.map(item => (
+                 <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                        "transition-colors hover:text-foreground/80",
+                        pathname === item.href ? "text-foreground" : "text-foreground/60"
+                    )}
+                 >
+                    {item.label}
+                </Link>
+             ))}
           </nav>
         </div>
 
@@ -79,13 +86,19 @@ export default function Header() {
             )}
           >
             <nav className="grid gap-4">
-              <Link
-                  href="/"
-                  className="text-lg font-medium hover:text-primary"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-              </Link>
+              {navItems.map(item => (
+                <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                        "text-lg font-medium transition-colors hover:text-primary",
+                        pathname === item.href ? "text-primary" : ""
+                    )}
+                    onClick={() => setIsMenuOpen(false)}
+                    >
+                    {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
         )}
