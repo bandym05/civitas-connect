@@ -1,78 +1,116 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  AlertTriangle,
-  Landmark,
-  Megaphone,
-  Newspaper,
-  Search,
-  Users,
-  Wrench,
-  Construction,
-} from "lucide-react";
-import Link from "next/link";
 
-const quickAccessTiles = [
-  {
-    title: "Pay Bills",
-    icon: <Landmark className="h-8 w-8 text-primary" />,
-    href: "/dashboard/services",
-    description: "Securely pay your property tax and utility bills online.",
-  },
-  {
-    title: "Report an Issue",
-    icon: <AlertTriangle className="h-8 w-8 text-destructive" />,
-    href: "/dashboard/services",
-    description: "Report a pothole, broken streetlight, or other issues.",
-  },
-  {
-    title: "News & Announcements",
-    icon: <Newspaper className="h-8 w-8 text-accent" />,
-    href: "/dashboard/news",
-    description: "Stay updated with the latest news from the municipality.",
-  },
-  {
-    title: "Projects & Development",
-    icon: <Construction className="h-8 w-8 text-yellow-500" />,
-    href: "/dashboard/projects",
-    description: "Track the progress of ongoing municipal projects.",
-  },
-  {
-    title: "Community Feedback",
-    icon: <Megaphone className="h-8 w-8 text-purple-500" />,
-    href: "/dashboard/feedback",
-    description: "Share your suggestions and ideas to improve our city.",
-  },
-  {
-    title: "Service Requests",
-    icon: <Wrench className="h-8 w-8 text-gray-500" />,
-    href: "/dashboard/services",
-    description: "Request services like waste pickup or road repairs.",
-  },
-];
+'use client'
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Wrench, Newspaper, AlertTriangle, CheckCircle, Clock } from "lucide-react";
+import Link from "next/link";
+import useLocalStorage from "@/hooks/use-local-storage";
+import { news } from "@/lib/data";
+import { Badge } from "@/components/ui/badge";
+import type { ServiceRequest } from "@/lib/data";
+
+
+const statusIcons = {
+  Pending: <Clock className="h-5 w-5 text-yellow-500" />,
+  'In Progress': <Wrench className="h-5 w-5 text-blue-500" />,
+  Completed: <CheckCircle className="h-5 w-5 text-green-500" />,
+};
+
 
 export default function DashboardPage() {
+  const [requests] = useLocalStorage<ServiceRequest[]>('service-requests', []);
+  const latestRequest = requests.length > 0 ? requests[0] : null;
+  const latestNews = news.find(n => !n.isEmergency) || news[0];
+
   return (
     <div>
         <div className="mb-8">
-            <h1 className="text-3xl font-bold font-headline">Dashboard</h1>
-            <p className="text-muted-foreground">Here's a quick overview of our city services.</p>
+            <h1 className="text-3xl font-bold font-headline">Welcome back, Jane!</h1>
+            <p className="text-muted-foreground">Here's a quick overview of your city services and latest updates.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {quickAccessTiles.map((tile) => (
-            <Link href={tile.href} key={tile.title} className="group">
-            <Card className="h-full transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2">
-                {tile.icon}
-                <CardTitle className="font-headline">{tile.title}</CardTitle>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+             <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Wrench className="h-6 w-6 text-primary"/>
+                        Latest Service Request
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
-                <p className="text-muted-foreground">{tile.description}</p>
+                    {latestRequest ? (
+                        <div className="space-y-3">
+                            <h3 className="font-semibold">{latestRequest.serviceTitle}</h3>
+                            <div className="flex items-center gap-3 text-sm">
+                                {statusIcons[latestRequest.status]}
+                                <span className="font-medium">{latestRequest.status}</span>
+                                <span className="text-muted-foreground">
+                                    - {new Date(latestRequest.submittedAt).toLocaleDateString()}
+                                </span>
+                            </div>
+                             <p className="text-sm text-muted-foreground pt-2">
+                                You can track the progress of all your requests on the services page.
+                            </p>
+                            <Button asChild variant="outline" className="mt-4">
+                                <Link href="/dashboard/services">View All Requests</Link>
+                            </Button>
+                        </div>
+                    ) : (
+                         <div className="text-center text-muted-foreground py-8">
+                            <p>You haven't made any service requests yet.</p>
+                            <Button asChild variant="secondary" className="mt-4">
+                                <Link href="/dashboard/services">Explore Services</Link>
+                            </Button>
+                        </div>
+                    )}
                 </CardContent>
-            </Card>
-            </Link>
-        ))}
+             </Card>
+              <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Newspaper className="h-6 w-6 text-primary"/>
+                        Latest News
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                   {latestNews && (
+                        <div className="space-y-3">
+                             <Badge variant="secondary">{latestNews.category}</Badge>
+                            <h3 className="font-semibold">{latestNews.title}</h3>
+                            <p className="text-sm text-muted-foreground">
+                                {latestNews.content.substring(0, 100)}...
+                            </p>
+                             <p className="text-xs text-muted-foreground pt-2">
+                                {new Date(latestNews.date).toLocaleDateString()}
+                            </p>
+                            <Button asChild variant="outline" className="mt-4">
+                                <Link href="/dashboard/news">Read More</Link>
+                            </Button>
+                        </div>
+                   )}
+                </CardContent>
+             </Card>
+           </div>
+            <div className="lg:col-span-1">
+                 <Card className="bg-secondary">
+                    <CardHeader>
+                        <CardTitle>Quick Links</CardTitle>
+                        <CardDescription>Fast access to common actions.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-col gap-3">
+                         <Button asChild justifyContent="start" variant="link" className="p-0 h-auto">
+                            <Link href="/dashboard/services">Pay a Bill</Link>
+                        </Button>
+                         <Button asChild justifyContent="start" variant="link" className="p-0 h-auto">
+                            <Link href="/dashboard/feedback">Submit Feedback</Link>
+                        </Button>
+                         <Button asChild justifyContent="start" variant="link" className="p-0 h-auto">
+                            <Link href="/dashboard/projects">View City Projects</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     </div>
   );

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -31,7 +32,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { services, Service } from '@/lib/data';
+import { services, Service, ServiceRequest } from '@/lib/data';
 import useLocalStorage from '@/hooks/use-local-storage';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
@@ -43,14 +44,6 @@ import type { ComponentType } from 'react';
 
 type FormData = {
   [key: string]: string;
-};
-
-type ServiceRequest = {
-  id: string;
-  serviceTitle: string;
-  status: 'Pending' | 'In Progress' | 'Completed';
-  submittedAt: string;
-  data: FormData;
 };
 
 const ServiceRequestForm = ({

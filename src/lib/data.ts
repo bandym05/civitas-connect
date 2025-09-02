@@ -58,6 +58,27 @@ export const services: Service[] = [
       { name: 'description', label: 'Project Description', type: 'textarea', placeholder: 'Briefly describe the scope of work.', required: true },
     ],
   },
+  {
+    id: 'parking-permit',
+    title: 'Parking Permit',
+    description: 'Apply for a new residential or temporary parking permit.',
+    icon: ParkingCircle,
+    formFields: [
+      { name: 'licensePlate', label: 'License Plate', type: 'text', placeholder: 'ABC-123', required: true },
+      { name: 'address', label: 'Residential Address', type: 'text', placeholder: '123 Main St, City', required: true },
+      { name: 'permitType', label: 'Permit Type', type: 'text', placeholder: 'e.g., Residential, Guest', required: true },
+    ],
+  },
+  {
+    id: 'pay-ticket',
+    title: 'Pay Parking Ticket',
+    description: 'Settle your parking violation fines online.',
+    icon: FileText,
+    formFields: [
+      { name: 'ticketNumber', label: 'Ticket Number', type: 'text', placeholder: 'T123456789', required: true },
+      { name: 'amount', label: 'Fine Amount ($)', type: 'text', placeholder: '50.00', required: true },
+    ],
+  },
 ];
 
 
@@ -158,3 +179,11 @@ export const projects: Project[] = [
     dataAiHint: 'city bike lane',
   },
 ];
+
+export type ServiceRequest = {
+  id: string;
+  serviceTitle: string;
+  status: 'Pending' | 'In Progress' | 'Completed';
+  submittedAt: string;
+  data: {[key: string]: string};
+};
