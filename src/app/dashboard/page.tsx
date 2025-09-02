@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Wrench, Newspaper, AlertTriangle, CheckCircle, Clock } from "lucide-react";
+import { Wrench, Newspaper, AlertTriangle, CheckCircle, Clock, Construction, Megaphone, FileText } from "lucide-react";
 import Link from "next/link";
 import useLocalStorage from "@/hooks/use-local-storage";
 import { news } from "@/lib/data";
@@ -22,6 +22,39 @@ export default function DashboardPage() {
   const [requests] = useLocalStorage<ServiceRequest[]>('service-requests', []);
   const latestRequest = requests.length > 0 ? requests[0] : null;
   const latestNews = news.find(n => !n.isEmergency) || news[0];
+
+  const quickActions = [
+      {
+          title: "Request a Service",
+          icon: <Wrench className="h-6 w-6 text-primary"/>,
+          description: "Submit a request for waste pickup, permits, etc.",
+          href: "/dashboard/services"
+      },
+      {
+          title: "Read the News",
+          icon: <Newspaper className="h-6 w-6 text-primary"/>,
+          description: "Get the latest updates and announcements.",
+          href: "/dashboard/news"
+      },
+      {
+          title: "View Projects",
+          icon: <Construction className="h-6 w-6 text-primary"/>,
+          description: "Track ongoing and completed city projects.",
+          href: "/dashboard/projects"
+      },
+      {
+          title: "Give Feedback",
+          icon: <Megaphone className="h-6 w-6 text-primary"/>,
+          description: "Share your suggestions or report concerns.",
+          href: "/dashboard/feedback"
+      },
+      {
+          title: "Pay a Bill/Ticket",
+          icon: <FileText className="h-6 w-6 text-primary"/>,
+          description: "Settle utility bills or parking tickets online.",
+          href: "/dashboard/services"
+      }
+  ]
 
   return (
     <div>
@@ -111,6 +144,27 @@ export default function DashboardPage() {
                     </CardContent>
                 </Card>
             </div>
+        </div>
+        <div className="mt-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Quick Actions</CardTitle>
+                    <CardDescription>Easily navigate to the most used sections of the portal.</CardDescription>
+                </CardHeader>
+                <CardContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {quickActions.map(action => (
+                         <Link href={action.href} key={action.title} className="group">
+                             <Card className="h-full transition-all duration-300 ease-in-out hover:shadow-lg hover:border-primary">
+                                 <CardContent className="p-4 flex flex-col items-center text-center gap-3">
+                                     {action.icon}
+                                     <h3 className="font-semibold">{action.title}</h3>
+                                     <p className="text-xs text-muted-foreground">{action.description}</p>
+                                 </CardContent>
+                             </Card>
+                         </Link>
+                    ))}
+                </CardContent>
+            </Card>
         </div>
     </div>
   );
