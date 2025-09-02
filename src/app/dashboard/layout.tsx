@@ -12,6 +12,7 @@ import {
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
+  useSidebar
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -28,13 +29,32 @@ const navItems = [
   { href: '/dashboard/feedback', label: 'Feedback', icon: Megaphone },
 ];
 
+
+function DashboardNav() {
+    const pathname = usePathname();
+    const { setOpenMobile } = useSidebar();
+    
+    return (
+        <SidebarMenu>
+            {navItems.map((item) => (
+            <SidebarMenuItem key={item.href}>
+                <Link href={item.href} onClick={() => setOpenMobile(false)}>
+                <SidebarMenuButton isActive={pathname === item.href}>
+                    <item.icon />
+                    <span>{item.label}</span>
+                </SidebarMenuButton>
+                </Link>
+            </SidebarMenuItem>
+            ))}
+        </SidebarMenu>
+    )
+}
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-
   return (
     <SidebarProvider>
       <div className="flex min-h-screen">
@@ -46,18 +66,7 @@ export default function DashboardLayout({
                         <h1 className="font-semibold text-lg font-headline">Civitas Connect</h1>
                     </div>
                 </SidebarHeader>
-                <SidebarMenu>
-                    {navItems.map((item) => (
-                    <SidebarMenuItem key={item.href}>
-                        <Link href={item.href}>
-                        <SidebarMenuButton isActive={pathname === item.href}>
-                            <item.icon />
-                            <span>{item.label}</span>
-                        </SidebarMenuButton>
-                        </Link>
-                    </SidebarMenuItem>
-                    ))}
-                </SidebarMenu>
+                <DashboardNav />
             </SidebarContent>
             <SidebarFooter>
                 <div className="flex items-center gap-3 p-2 border-t">
