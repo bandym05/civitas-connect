@@ -101,11 +101,11 @@ export default function DashboardLayout({
             </SidebarFooter>
         </Sidebar>
         <div className="flex-1 flex flex-col">
-          <header className="flex items-center justify-between p-4 border-b md:justify-end">
-            <div className="md:hidden">
+          <header className="flex items-center justify-between p-4 border-b">
+             <p className="text-sm font-medium">Welcome back, Jane!</p>
+            <div>
                 <SidebarTrigger />
             </div>
-             <p className="text-sm font-medium hidden md:block">Welcome back, Jane!</p>
           </header>
           <main className="flex-1 overflow-y-auto p-4 md:p-8">
             {children}
