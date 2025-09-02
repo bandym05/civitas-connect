@@ -28,7 +28,7 @@ export default function BillingPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">${currentBalance.toFixed(2)}</p>
+            <p className="text-4xl font-bold">E{currentBalance.toFixed(2)}</p>
             <p className="text-sm text-muted-foreground">Due by August 31, 2024</p>
             <Button className="w-full mt-6">Pay Now</Button>
           </CardContent>
@@ -79,7 +79,7 @@ export default function BillingPage() {
                 <TableRow key={payment.id}>
                   <TableCell>{new Date(payment.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</TableCell>
                   <TableCell className="font-medium">{payment.description}</TableCell>
-                  <TableCell>${payment.amount.toFixed(2)}</TableCell>
+                  <TableCell>E{payment.amount.toFixed(2)}</TableCell>
                   <TableCell className="text-right">
                     <Badge
                       className={cn({

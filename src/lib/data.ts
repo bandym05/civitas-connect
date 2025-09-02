@@ -34,7 +34,7 @@ export const services: Service[] = [
     icon: Droplets,
     formFields: [
       { name: 'accountNumber', label: 'Account Number', type: 'text', placeholder: '123456789', required: true },
-      { name: 'amount', label: 'Payment Amount ($)', type: 'text', placeholder: '100.00', required: true },
+      { name: 'amount', label: 'Payment Amount (E)', type: 'text', placeholder: '100.00', required: true },
     ],
   },
   {
@@ -44,7 +44,7 @@ export const services: Service[] = [
     icon: Building2,
     formFields: [
       { name: 'propertyId', label: 'Property ID / Parcel Number', type: 'text', placeholder: 'PID-123-456', required: true },
-      { name: 'amount', label: 'Payment Amount ($)', type: 'text', placeholder: '1500.00', required: true },
+      { name: 'amount', label: 'Payment Amount (E)', type: 'text', placeholder: '1500.00', required: true },
     ],
   },
   {
@@ -76,7 +76,7 @@ export const services: Service[] = [
     icon: FileText,
     formFields: [
       { name: 'ticketNumber', label: 'Ticket Number', type: 'text', placeholder: 'T123456789', required: true },
-      { name: 'amount', label: 'Fine Amount ($)', type: 'text', placeholder: '50.00', required: true },
+      { name: 'amount', label: 'Fine Amount (E)', type: 'text', placeholder: '50.00', required: true },
     ],
   },
 ];
