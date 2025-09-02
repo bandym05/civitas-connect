@@ -99,13 +99,13 @@ export default function DashboardPage() {
                         <CardDescription>Fast access to common actions.</CardDescription>
                     </CardHeader>
                     <CardContent className="flex flex-col gap-3">
-                         <Button asChild justifyContent="start" variant="link" className="p-0 h-auto">
+                         <Button asChild variant="link" className="p-0 h-auto justify-start">
                             <Link href="/dashboard/services">Pay a Bill</Link>
                         </Button>
-                         <Button asChild justifyContent="start" variant="link" className="p-0 h-auto">
+                         <Button asChild variant="link" className="p-0 h-auto justify-start">
                             <Link href="/dashboard/feedback">Submit Feedback</Link>
                         </Button>
-                         <Button asChild justifyContent="start" variant="link" className="p-0 h-auto">
+                         <Button asChild variant="link" className="p-0 h-auto justify-start">
                             <Link href="/dashboard/projects">View City Projects</Link>
                         </Button>
                     </CardContent>
