@@ -46,7 +46,7 @@ export default function DashboardPage() {
                                 {statusIcons[latestRequest.status]}
                                 <span className="font-medium">{latestRequest.status}</span>
                                 <span className="text-muted-foreground">
-                                    - {new Date(latestRequest.submittedAt).toLocaleDateString()}
+                                    - {new Date(latestRequest.submittedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                 </span>
                             </div>
                              <p className="text-sm text-muted-foreground pt-2">
@@ -82,7 +82,7 @@ export default function DashboardPage() {
                                 {latestNews.content.substring(0, 100)}...
                             </p>
                              <p className="text-xs text-muted-foreground pt-2">
-                                {new Date(latestNews.date).toLocaleDateString()}
+                                {new Date(latestNews.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                             </p>
                             <Button asChild variant="outline" className="mt-4">
                                 <Link href="/dashboard/news">Read More</Link>

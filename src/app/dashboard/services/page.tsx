@@ -111,7 +111,7 @@ const ServiceTracker = ({ requests }: { requests: ServiceRequest[] }) => {
             {requests.map((request) => (
               <TableRow key={request.id}>
                 <TableCell className="font-medium">{request.serviceTitle}</TableCell>
-                <TableCell>{new Date(request.submittedAt).toLocaleDateString()}</TableCell>
+                <TableCell>{new Date(request.submittedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</TableCell>
                 <TableCell className="text-right">
                   <Badge
                     variant={
