@@ -1,0 +1,159 @@
+import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap } from 'lucide-react';
+
+export type Service = {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ReactElement;
+  formFields: {
+    name: string;
+    label: string;
+    type: 'text' | 'textarea' | 'email' | 'tel';
+    placeholder: string;
+    required: boolean;
+  }[];
+};
+
+export const services: Service[] = [
+  {
+    id: 'waste-pickup',
+    title: 'Waste Pickup Request',
+    description: 'Schedule a special waste or recycling pickup.',
+    icon: Trash2,
+    formFields: [
+      { name: 'address', label: 'Pickup Address', type: 'text', placeholder: '123 Main St, City', required: true },
+      { name: 'wasteType', label: 'Type of Waste', type: 'text', placeholder: 'e.g., Large furniture, electronics', required: true },
+      { name: 'details', label: 'Additional Details', type: 'textarea', placeholder: 'Provide any additional details for the pickup crew.', required: false },
+    ],
+  },
+  {
+    id: 'water-bill',
+    title: 'Water & Electricity Bill',
+    description: 'Pay your utility bills quickly and securely.',
+    icon: Droplets,
+    formFields: [
+      { name: 'accountNumber', label: 'Account Number', type: 'text', placeholder: '123456789', required: true },
+      { name: 'amount', label: 'Payment Amount ($)', type: 'text', placeholder: '100.00', required: true },
+    ],
+  },
+  {
+    id: 'property-tax',
+    title: 'Property Tax Payment',
+    description: 'Pay your annual or semi-annual property taxes.',
+    icon: Building2,
+    formFields: [
+      { name: 'propertyId', label: 'Property ID / Parcel Number', type: 'text', placeholder: 'PID-123-456', required: true },
+      { name: 'amount', label: 'Payment Amount ($)', type: 'text', placeholder: '1500.00', required: true },
+    ],
+  },
+  {
+    id: 'building-permit',
+    title: 'Building Permit Application',
+    description: 'Apply for a permit for new construction or renovations.',
+    icon: Hammer,
+    formFields: [
+      { name: 'projectName', label: 'Project Name', type: 'text', placeholder: 'e.g., Kitchen Renovation', required: true },
+      { name: 'address', label: 'Project Address', type: 'text', placeholder: '123 Main St, City', required: true },
+      { name: 'description', label: 'Project Description', type: 'textarea', placeholder: 'Briefly describe the scope of work.', required: true },
+    ],
+  },
+];
+
+
+export type NewsArticle = {
+  id: number;
+  title: string;
+  date: string;
+  category: 'Community' | 'Infrastructure' | 'Alert' | 'Event';
+  content: string;
+  isEmergency: boolean;
+};
+
+export const news: NewsArticle[] = [
+  {
+    id: 1,
+    title: 'Emergency Water Outage in Downtown Area',
+    date: '2024-08-15',
+    category: 'Alert',
+    content: 'Due to a major water main break, there will be a temporary water outage affecting the downtown core. Crews are on site and expect to restore service within 8 hours. A boil water advisory will be in effect for 24 hours after restoration.',
+    isEmergency: true,
+  },
+  {
+    id: 2,
+    title: 'Annual Summer Festival Kicks Off This Weekend',
+    date: '2024-08-12',
+    category: 'Event',
+    content: 'Join us for the annual SummerFest this weekend at Central Park! Enjoy live music, food trucks, and activities for the whole family. The event runs from Friday to Sunday, 10 AM to 10 PM.',
+    isEmergency: false,
+  },
+  {
+    id: 3,
+    title: 'Road Closure on Elm Street for Repaving',
+    date: '2024-08-10',
+    category: 'Infrastructure',
+    content: 'Elm Street between 1st and 3rd Avenue will be closed to all traffic from August 15th to August 20th for a scheduled repaving project. Please follow detour signs.',
+    isEmergency: false,
+  },
+  {
+    id: 4,
+    title: 'City Council Approves New Community Garden Program',
+    date: '2024-08-05',
+    category: 'Community',
+    content: 'The city council has approved a new initiative to fund and support community gardens across the municipality. Applications for garden plots will open next month.',
+    isEmergency: false,
+  },
+];
+
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  status: 'Ongoing' | 'Completed';
+  progress: number;
+  location: string;
+  imageUrl: string;
+  dataAiHint: string;
+};
+
+export const projects: Project[] = [
+  {
+    id: 1,
+    title: 'Central Park Renovation',
+    description: 'A complete overhaul of Central Park, including new playgrounds, a splash pad, and improved walking trails.',
+    status: 'Ongoing',
+    progress: 65,
+    location: 'Central Park, Downtown',
+    imageUrl: 'https://picsum.photos/600/400',
+    dataAiHint: 'city park',
+  },
+  {
+    id: 2,
+    title: 'Highway 5 Expansion',
+    description: 'Adding two new lanes to Highway 5 to alleviate traffic congestion and improve commuter travel times.',
+    status: 'Ongoing',
+    progress: 40,
+    location: 'Highway 5, East End',
+    imageUrl: 'https://picsum.photos/600/400',
+    dataAiHint: 'road construction',
+  },
+  {
+    id: 3,
+    title: 'New Public Library - North Branch',
+    description: 'Construction of a new state-of-the-art public library to serve the growing northern communities.',
+    status: 'Ongoing',
+    progress: 85,
+    location: 'Northside Community',
+    imageUrl: 'https://picsum.photos/600/400',
+    dataAiHint: 'modern library',
+  },
+  {
+    id: 4,
+    title: 'Downtown Bikeway Network',
+    description: 'Completed project that introduced 15km of protected bike lanes throughout the downtown core.',
+    status: 'Completed',
+    progress: 100,
+    location: 'Downtown Core',
+    imageUrl: 'https://picsum.photos/600/400',
+    dataAiHint: 'city bike lane',
+  },
+];
