@@ -1,10 +1,11 @@
-import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap } from 'lucide-react';
+import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap, LucideProps } from 'lucide-react';
+import type { ComponentType } from 'react';
 
 export type Service = {
   id: string;
   title: string;
   description: string;
-  icon: React.ReactElement;
+  icon: ComponentType<LucideProps>;
   formFields: {
     name: string;
     label: string;

@@ -36,7 +36,7 @@ import useLocalStorage from '@/hooks/use-local-storage';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
-import { v4 as uuidv4 } from 'uuid'; // Need to add uuid
+import { v4 as uuidv4 } from 'uuid';
 
 type FormData = {
   [key: string]: string;
@@ -146,26 +146,26 @@ const ServiceTracker = ({ requests }: { requests: ServiceRequest[] }) => {
 export default function ServicesPage() {
   const [requests, setRequests] = useLocalStorage<ServiceRequest[]>('service-requests', []);
   const { toast } = useToast();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  // This is a mock function to simulate generating a UUID.
-  // In a real app, you would install the `uuid` package.
-  const mockUuid = () => Math.random().toString(36).substring(2, 15);
+  const [openDialogs, setOpenDialogs] = useState<Record<string, boolean>>({});
 
   const handleFormSubmit = (serviceTitle: string) => (data: FormData) => {
     const newRequest: ServiceRequest = {
-      id: mockUuid(), // In a real app: uuidv4(),
+      id: uuidv4(),
       serviceTitle,
       status: 'Pending',
       submittedAt: new Date().toISOString(),
       data,
     };
     setRequests([newRequest, ...requests]);
-    setIsDialogOpen(false);
+    setOpenDialogs(prev => ({...prev, [serviceTitle]: false}));
     toast({
       title: "Request Submitted!",
       description: `Your request for "${serviceTitle}" has been received.`,
     });
+  };
+
+  const handleOpenChange = (serviceId: string, open: boolean) => {
+    setOpenDialogs(prev => ({...prev, [serviceId]: open}));
   };
 
   return (
@@ -179,18 +179,18 @@ export default function ServicesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         {services.map((service) => (
-          <Dialog key={service.id} onOpenChange={setIsDialogOpen} open={isDialogOpen && isDialogOpen[service.id]} >
+          <Dialog key={service.id} open={openDialogs[service.id] || false} onOpenChange={(open) => handleOpenChange(service.id, open)}>
              <Card className="flex flex-col">
               <CardHeader>
                 <div className="flex items-center gap-4">
-                    <span className="text-primary">{service.icon({className: "w-8 h-8"})}</span>
+                    <span className="text-primary">{<service.icon className="w-8 h-8" />}</span>
                     <CardTitle className="font-headline">{service.title}</CardTitle>
                 </div>
                 <CardDescription>{service.description}</CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
                 <DialogTrigger asChild>
-                  <Button className="w-full" onClick={() => setIsDialogOpen(prevState => ({...prevState, [service.id]: true}))}>
+                  <Button className="w-full">
                     Open Form
                   </Button>
                 </DialogTrigger>
@@ -205,10 +205,7 @@ export default function ServicesPage() {
               </DialogHeader>
               <ServiceRequestForm
                 service={service}
-                onFormSubmit={(data) => {
-                    handleFormSubmit(service.title)(data);
-                    setIsDialogOpen(prevState => ({...prevState, [service.id]: false}));
-                }}
+                onFormSubmit={handleFormSubmit(service.title)}
               />
             </DialogContent>
           </Dialog>
