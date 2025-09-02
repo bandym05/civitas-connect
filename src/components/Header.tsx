@@ -2,21 +2,28 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Wind } from 'lucide-react';
+import { Menu, X, Wind, LogIn } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/news', label: 'News' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/feedback', label: 'Feedback' },
+  { href: '/dashboard/services', label: 'Services' },
+  { href: '/dashboard/news', label: 'News' },
+  { href: '/dashboard/projects', label: 'Projects' },
+  { href: '/dashboard/feedback', label: 'Feedback' },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Don't show header on dashboard pages
+  if (pathname.startsWith('/dashboard')) {
+    return null;
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,15 +36,12 @@ export default function Header() {
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
+             <Link
+                href="/"
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
               >
-                {item.label}
+                Home
               </Link>
-            ))}
           </nav>
         </div>
 
@@ -48,8 +52,14 @@ export default function Header() {
                 <span className="font-bold font-headline">Civitas Connect</span>
             </Link>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <ThemeToggle />
+            <Button asChild>
+                <Link href="/login">
+                    <LogIn className="mr-2" />
+                    Login
+                </Link>
+            </Button>
             <Button
               variant="ghost"
               className="md:hidden"
@@ -69,16 +79,13 @@ export default function Header() {
             )}
           >
             <nav className="grid gap-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
+              <Link
+                  href="/"
                   className="text-lg font-medium hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.label}
-                </Link>
-              ))}
+                  Home
+              </Link>
             </nav>
           </div>
         )}

@@ -1,7 +1,16 @@
+'use client';
+
 import { Wind, Twitter, Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+    const pathname = usePathname();
+
+    if (pathname.startsWith('/dashboard') || pathname === '/login') {
+        return null;
+    }
+
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto py-8 px-4">

@@ -37,6 +37,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { v4 as uuidv4 } from 'uuid';
+import type { LucideProps } from 'lucide-react';
+import type { ComponentType } from 'react';
+
 
 type FormData = {
   [key: string]: string;
@@ -169,7 +172,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div>
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold font-headline">Citizen Services</h1>
         <p className="text-lg text-muted-foreground mt-2">
@@ -178,12 +181,14 @@ export default function ServicesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {services.map((service) => (
+        {services.map((service) => {
+          const Icon = service.icon as ComponentType<LucideProps>;
+          return (
           <Dialog key={service.id} open={openDialogs[service.id] || false} onOpenChange={(open) => handleOpenChange(service.id, open)}>
              <Card className="flex flex-col">
               <CardHeader>
                 <div className="flex items-center gap-4">
-                    <span className="text-primary">{<service.icon className="w-8 h-8" />}</span>
+                    <span className="text-primary"><Icon className="w-8 h-8" /></span>
                     <CardTitle className="font-headline">{service.title}</CardTitle>
                 </div>
                 <CardDescription>{service.description}</CardDescription>
@@ -209,7 +214,7 @@ export default function ServicesPage() {
               />
             </DialogContent>
           </Dialog>
-        ))}
+        )})}
       </div>
 
       <div className="mt-16">

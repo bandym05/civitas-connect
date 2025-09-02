@@ -7,7 +7,6 @@ import {
   Megaphone,
   Newspaper,
   Search,
-  Users,
   Wrench,
   Construction,
 } from "lucide-react";
@@ -17,37 +16,37 @@ const quickAccessTiles = [
   {
     title: "Pay Bills",
     icon: <Landmark className="h-8 w-8 text-primary" />,
-    href: "/services",
+    href: "/dashboard/services",
     description: "Securely pay your property tax and utility bills online.",
   },
   {
     title: "Report an Issue",
     icon: <AlertTriangle className="h-8 w-8 text-destructive" />,
-    href: "/services",
+    href: "/dashboard/services",
     description: "Report a pothole, broken streetlight, or other issues.",
   },
   {
     title: "News & Announcements",
     icon: <Newspaper className="h-8 w-8 text-accent" />,
-    href: "/news",
+    href: "/dashboard/news",
     description: "Stay updated with the latest news from the municipality.",
   },
   {
     title: "Projects & Development",
     icon: <Construction className="h-8 w-8 text-yellow-500" />,
-    href: "/projects",
+    href: "/dashboard/projects",
     description: "Track the progress of ongoing municipal projects.",
   },
   {
     title: "Community Feedback",
     icon: <Megaphone className="h-8 w-8 text-purple-500" />,
-    href: "/feedback",
+    href: "/dashboard/feedback",
     description: "Share your suggestions and ideas to improve our city.",
   },
   {
     title: "Service Requests",
     icon: <Wrench className="h-8 w-8 text-gray-500" />,
-    href: "/services",
+    href: "/dashboard/services",
     description: "Request services like waste pickup or road repairs.",
   },
 ];

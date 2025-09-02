@@ -11,7 +11,7 @@ export default function ProjectsPage() {
   const completedProjects = projects.filter(p => p.status === 'Completed');
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div>
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold font-headline">Projects & Development</h1>
         <p className="text-lg text-muted-foreground mt-2">
