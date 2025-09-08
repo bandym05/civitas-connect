@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Wind, LayoutDashboard, Newspaper, Wrench, Construction, Megaphone, LogOut, Settings, CreditCard } from 'lucide-react';
+import { Wind, LayoutDashboard, Newspaper, Wrench, Construction, Megaphone, LogOut, Settings, CreditCard, User } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
@@ -69,18 +69,28 @@ export default function DashboardLayout({
                 <DashboardNav />
             </SidebarContent>
             <SidebarFooter>
-                <div className="flex items-center gap-3 p-2 border-t">
-                    <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                        <p className="text-sm font-semibold">Jane Doe</p>
-                        <p className="text-xs text-muted-foreground">jane.doe@example.com</p>
+                <Link href="/dashboard/profile" className="w-full">
+                    <div className="flex items-center gap-3 p-2 border-t">
+                        <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                            <p className="text-sm font-semibold">Jane Doe</p>
+                            <p className="text-xs text-muted-foreground">jane.doe@example.com</p>
+                        </div>
+                        <ThemeToggle />
                     </div>
-                     <ThemeToggle />
-                </div>
+                </Link>
                  <SidebarMenu>
+                     <SidebarMenuItem>
+                        <Link href="/dashboard/profile">
+                            <SidebarMenuButton>
+                                <User/>
+                                <span>Profile</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
                     <SidebarMenuItem>
                         <Link href="#">
                             <SidebarMenuButton>
