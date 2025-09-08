@@ -9,7 +9,7 @@ import { User, Mail, Lock } from "lucide-react"
 
 export default function ProfilePage() {
   return (
-    <div>
+    <div className="container mx-auto py-12 px-4">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold font-headline">My Profile</h1>
         <p className="text-lg text-muted-foreground mt-2">
@@ -17,7 +17,7 @@ export default function ProfilePage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
         <div className="lg:col-span-1">
           <Card>
             <CardContent className="pt-6 flex flex-col items-center text-center">
