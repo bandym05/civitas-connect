@@ -11,15 +11,15 @@ export default function BillingPage() {
   const currentBalance = 75.50; // Mock data
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="text-center mb-12">
+    <div className="space-y-12">
+      <div className="text-center">
         <h1 className="text-4xl font-bold font-headline">Billing & Payments</h1>
         <p className="text-lg text-muted-foreground mt-2">
           View your transaction history, download statements, and manage your payments.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <Card className="lg:col-span-1">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">

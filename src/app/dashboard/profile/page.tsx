@@ -9,8 +9,8 @@ import { User, Mail, Lock } from "lucide-react"
 
 export default function ProfilePage() {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="text-center mb-12">
+    <div className="space-y-12">
+      <div className="text-center">
         <h1 className="text-4xl font-bold font-headline">My Profile</h1>
         <p className="text-lg text-muted-foreground mt-2">
           View and manage your personal information.
@@ -76,8 +76,7 @@ export default function ProfilePage() {
                         </div>
                     </div>
                      <div className="space-y-2">
-                        <Label htmlFor="confirm-password">Confirm New Password</Label>
-                         <div className="relative">
+                        <Label htmlFor="confirm-password">Confirm New Password</Label>                         <div className="relative">
                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                             <Input id="confirm-password" type="password" className="pl-10" />
                         </div>
