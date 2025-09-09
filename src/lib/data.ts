@@ -1,4 +1,5 @@
-import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap, LucideProps, SplitSquare, Megaphone, Shovel } from 'lucide-react';
+
+import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap, LucideProps, SplitSquareHorizontal, Megaphone, Shovel } from 'lucide-react';
 import type { ComponentType } from 'react';
 
 export type Service = {
@@ -83,7 +84,7 @@ export const services: Service[] = [
     id: 'land-subdivision',
     title: 'Land Subdivision Application',
     description: 'Apply to divide a parcel of land into smaller lots.',
-    icon: SplitSquare,
+    icon: SplitSquareHorizontal,
     formFields: [
       { name: 'propertyId', label: 'Original Property ID', type: 'text', placeholder: 'PID-123-456', required: true },
       { name: 'applicantName', label: 'Applicant Name', type: 'text', placeholder: 'John Doe', required: true },
