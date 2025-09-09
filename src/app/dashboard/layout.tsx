@@ -69,7 +69,7 @@ export default function DashboardLayout({
                 <DashboardNav />
             </SidebarContent>
             <SidebarFooter>
-                <Link href="/dashboard/profile" className="w-full">
+                <Link href="/dashboard/profile" className="w-full" onClick={() => useSidebar().setOpenMobile(false)}>
                     <div className="flex items-center gap-3 p-2 border-t">
                         <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -84,7 +84,7 @@ export default function DashboardLayout({
                 </Link>
                  <SidebarMenu>
                      <SidebarMenuItem>
-                        <Link href="/dashboard/profile">
+                        <Link href="/dashboard/profile" onClick={() => useSidebar().setOpenMobile(false)}>
                             <SidebarMenuButton>
                                 <User/>
                                 <span>Profile</span>
@@ -110,7 +110,7 @@ export default function DashboardLayout({
                  </SidebarMenu>
             </SidebarFooter>
         </Sidebar>
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col">
           <header className="flex items-center justify-between p-4 border-b">
              <p className="text-sm font-medium">Welcome back, Jane!</p>
             <div>
