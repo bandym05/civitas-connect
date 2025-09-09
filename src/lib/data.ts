@@ -1,4 +1,4 @@
-import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap, LucideProps } from 'lucide-react';
+import { FileText, Hammer, ParkingCircle, Trash2, Building2, Droplets, Zap, LucideProps, SplitSquare, Megaphone, Shovel } from 'lucide-react';
 import type { ComponentType } from 'react';
 
 export type Service = {
@@ -77,6 +77,39 @@ export const services: Service[] = [
     formFields: [
       { name: 'ticketNumber', label: 'Ticket Number', type: 'text', placeholder: 'T123456789', required: true },
       { name: 'amount', label: 'Fine Amount (E)', type: 'text', placeholder: '50.00', required: true },
+    ],
+  },
+   {
+    id: 'land-subdivision',
+    title: 'Land Subdivision Application',
+    description: 'Apply to divide a parcel of land into smaller lots.',
+    icon: SplitSquare,
+    formFields: [
+      { name: 'propertyId', label: 'Original Property ID', type: 'text', placeholder: 'PID-123-456', required: true },
+      { name: 'applicantName', label: 'Applicant Name', type: 'text', placeholder: 'John Doe', required: true },
+      { name: 'reason', label: 'Reason for Subdivision', type: 'textarea', placeholder: 'e.g., Estate planning, new development', required: true },
+    ],
+  },
+  {
+    id: 'advertising-permit',
+    title: 'Outdoor Advertising Permit',
+    description: 'Request a permit for billboards, signs, or other outdoor ads.',
+    icon: Megaphone,
+    formFields: [
+      { name: 'companyName', label: 'Company Name', type: 'text', placeholder: 'e.g., Acme Corp', required: true },
+      { name: 'location', label: 'Proposed Ad Location', type: 'text', placeholder: 'Address or intersection', required: true },
+      { name: 'adType', label: 'Type of Advertisement', type: 'text', placeholder: 'e.g., Billboard, Digital Sign', required: true },
+    ],
+  },
+  {
+    id: 'landfill-access',
+    title: 'Landfill Access Permit',
+    description: 'Get a permit for residential or commercial landfill access.',
+    icon: Shovel,
+    formFields: [
+      { name: 'applicantName', label: 'Applicant Name', type: 'text', placeholder: 'John Doe', required: true },
+      { name: 'vehicleInfo', label: 'Vehicle Make/Model & Plate', type: 'text', placeholder: 'e.g., Ford F-150, ABC-123', required: true },
+      { name: 'accessType', label: 'Access Type', type: 'text', placeholder: 'e.g., Residential, Commercial', required: true },
     ],
   },
 ];
