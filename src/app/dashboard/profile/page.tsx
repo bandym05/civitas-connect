@@ -9,7 +9,7 @@ import { User, Mail, Lock } from "lucide-react"
 
 export default function ProfilePage() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold font-headline">My Profile</h1>
         <p className="text-lg text-muted-foreground mt-2">
@@ -17,8 +17,8 @@ export default function ProfilePage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div className="lg:col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-1 flex flex-col gap-8">
           <Card>
             <CardContent className="pt-6 flex flex-col items-center text-center">
               <Avatar className="h-24 w-24 mb-4">
@@ -54,7 +54,7 @@ export default function ProfilePage() {
                 </div>
               </div>
               <Button>Save Changes</Button>
-              <Separator />
+              <Separator className="my-6" />
                <div>
                  <h3 className="text-lg font-semibold">Change Password</h3>
                  <p className="text-sm text-muted-foreground mb-4">
@@ -82,8 +82,8 @@ export default function ProfilePage() {
                         </div>
                     </div>
                  </div>
+                  <Button className="mt-4">Update Password</Button>
               </div>
-              <Button>Update Password</Button>
             </CardContent>
           </Card>
         </div>

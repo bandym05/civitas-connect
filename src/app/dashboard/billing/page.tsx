@@ -11,7 +11,7 @@ export default function BillingPage() {
   const currentBalance = 75.50; // Mock data
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold font-headline">Billing & Payments</h1>
         <p className="text-lg text-muted-foreground mt-2">
